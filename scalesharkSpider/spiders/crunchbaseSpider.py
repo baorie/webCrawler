@@ -1,11 +1,17 @@
 import scrapy
 from scalesharkSpider.items import ScalesharkspiderItem
-import re
+from scrapy_redis.spiders import RedisCrawlSpider
 
-class CrunchbaseSpider(scrapy.Spider):
+class CrunchbaseSpider(RedisCrawlSpider):
     name = 'crunchbaseSpider'
     allowed_domains = ['crunchbase.com']
-    start_urls = ('https://www.crunchbase.com/search/organization.companies', )
+    # start_urls = ('https://www.crunchbase.com/search/organization.companies', )
+    redis_key = 'crunchbaseSpider:start_urls'
+
+    def __init__(self, *args, **kwargs):
+        domain = kwargs.pop('domain', '')
+        self.allowed_domains = filter(None, domain.split(','))
+        super(CrunchbaseSpider, self).__init__(*args, **kwargs)
 
     def parse(self, response):
         for each in response.xpath("//grid-row[@class='ng-star-inserted']"):

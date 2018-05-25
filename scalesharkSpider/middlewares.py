@@ -3,7 +3,6 @@ from scrapy import log
 from proxy import PROXIES
 from agents import AGENTS
 from changeProxy import ChangeProxy
-
 import random
 
 # Define here the models for your spider middleware

@@ -68,6 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'scalesharkSpider.pipelines.ScalesharkspiderPipeline': 300,
+   'scrapy_redis.pipelines.RedisPipeline':400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -90,3 +91,18 @@ AUTOTHROTTLE_ENABLED = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER_PERSIST = True
+# Priority
+SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
+# FIFO
+# SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderQueue'
+# LIFO
+# SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderStack'
+
+# REDIS_HOST = 'localhost'
+# REDIS_PORT = 6379
+
+REDIS_URL = 'redis://@localhost:6379'

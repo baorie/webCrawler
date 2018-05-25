@@ -21,7 +21,6 @@
 
 
 
-
 已解决的问题：
 
 - 如果出现 Creating Server TCP listening socket *:6379: bind: Address already in use， 杀进程：

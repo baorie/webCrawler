@@ -20,7 +20,7 @@ class CustomHttpProxyMiddleware(object):
     def process_request(self, request, spider):
         p = random.choice(PROXIES)
         try:
-            request.meta['proxy'] = p['prtcl_ip_port']
+            request.meta['proxy'] = p['prtcl']+'://'+p['ip_port']
             # request.meta['proxy'] = 'https://129.213.76.9:3128'
             print("ip proxy: " + request.meta['proxy'])
         except Exception, e:

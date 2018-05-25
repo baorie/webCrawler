@@ -56,13 +56,17 @@ DOWNLOADER_MIDDLEWARES = {
    # 'scalesharkSpider.middlewares.ScalesharkspiderDownloaderMiddleware': 543,
    'scalesharkSpider.middlewares.CustomHttpProxyMiddleware': 543,
    'scalesharkSpider.middlewares.CustomUserAgentMiddleware': 545,
+   'scrapy.downloadermiddlewares.retry.RetryMiddleware': 351,
 }
+DOWNLOAD_TIMEOUT = 3
+RETRY_ENABLED = False
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+EXTENSIONS = {
+   'scalesharkSpider.extensions.RedisSpiderSmartIdleClosedExensions': 500,
+   # 'scrapy.extensions.telnet.TelnetConsole': None,
+}
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
@@ -106,3 +110,6 @@ SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 # REDIS_PORT = 6379
 
 REDIS_URL = 'redis://@localhost:6379'
+
+MYEXT_ENABLED=True      # 是否启用扩展，启用扩展为 True， 不启用为 False
+IDLE_NUMBER=360           # 关闭爬虫的持续空闲次数，持续空闲次数超过IDLE_NUMBER，爬虫会被关闭。默认为 360 ，也就是30分钟，一分钟12个时间单位

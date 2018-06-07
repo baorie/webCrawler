@@ -1,5 +1,8 @@
 # webCrawler
 
+### I have given up on this project since I feel like logging in to Crunchbase is impossible, if you know anything about how to log in, please let me know and feel free to use the existing result.
+
+
 使用：
 
 打开terminal，启动redis-server: $ redis-server
@@ -9,10 +12,6 @@
 
 
 要干的活:
-
-- 解决scrapy-redis空跑问题，链接跑完后自动关闭爬虫
-
-- 动态管理ip proxy pool
 
 - 下一页
 
